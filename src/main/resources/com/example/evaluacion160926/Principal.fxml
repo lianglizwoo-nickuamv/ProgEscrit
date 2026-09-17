@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="">
+    <top>
+        <VBox BorderPane.alignment="CENTER">
+            <children>
+                <!-- Menú clásico de la ventana (MenuBar) -->
+                <MenuBar>
+                    <menus>
+                        <Menu text="Sistema">
+                            <items>
+                                <MenuItem onAction="#salir" text="Cerrar Sesión" />
+                            </items>
+                        </Menu>
+                        <Menu text="Gestión">
+                            <items>
+                                <MenuItem onAction="#abrirRegistro" text="Registrar Cliente" />
+                                <MenuItem onAction="#abrirConsulta" text="Consultar Clientes" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+
+                <!-- Barra de herramientas con accesos rápidos (ToolBar) -->
+                <ToolBar prefHeight="40.0" prefWidth="200.0">
+                    <items>
+                        <Button onAction="#abrirRegistro" text="Registrar Cliente" />
+                        <Button onAction="#abrirConsulta" text="Consultar Clientes" />
+                    </items>
+                </ToolBar>
+            </children>
+        </VBox>
+    </top>
+
+    <center>
+        <!-- Texto central que incluye el ContextMenu (Clic derecho) -->
+        <Label text="Bienvenido al Sistema de Registro" BorderPane.alignment="CENTER">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+            <contextMenu>
+                <ContextMenu>
+                    <items>
+                        <MenuItem onAction="#mostrarAcercaDe" text="Acerca del Sistema..." />
+                    </items>
+                </ContextMenu>
+            </contextMenu>
+        </Label>
+    </center>
+</BorderPane>
