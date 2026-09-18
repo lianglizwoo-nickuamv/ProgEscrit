@@ -15,7 +15,7 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/com/example/evaluacion160926/Login.fxml"));
 
         // Cargamos la escena con el tamaño adecuado para el Login
-        Scene scene = new Scene(fxmlLoader.load(), 400, 350);
+        Scene scene = new Scene(fxmlLoader.load(), 400, 410);
 
         stage.setTitle("Sistema de Registro - Inicio de Sesión");
         stage.setScene(scene);

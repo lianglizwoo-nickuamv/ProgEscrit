@@ -14,11 +14,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import javafx.stage.Modality;
+import service.UsuarioService;
+import utils.AlertHelper;
 
 import java.io.IOException;
 import java.util.Optional;
 
 public class LoginController {
+
+    private final UsuarioService usuarioService = UsuarioService.getInstance();
 
     // Vinculación de los componentes del FXML
     @FXML
@@ -35,6 +40,11 @@ public class LoginController {
     @FXML
     void iniciarSesion(ActionEvent event) {
         validarYEntrar();
+    }
+
+    @FXML
+    void crearCuenta(ActionEvent event) {
+        abrirRegistroUsuario();
     }
 
     @FXML
@@ -64,22 +74,54 @@ public class LoginController {
     // --- MÉTODOS AUXILIARES ---
 
     private void validarYEntrar() {
-        String usuario = txtUsuario.getText();
+        String usuario = txtUsuario.getText() == null ? "" : txtUsuario.getText().trim();
         String password = txtPassword.getText();
 
-        // Validación de campos vacíos
-        if (usuario == null || usuario.trim().isEmpty() || password == null || password.trim().isEmpty()) {
-            // Uso de Alert de Advertencia (Requerimiento de la rúbrica)
-            Alert alerta = new Alert(Alert.AlertType.WARNING);
-            alerta.setTitle("Campos incompletos");
-            alerta.setHeaderText(null);
-            alerta.setContentText("Por favor, ingrese el usuario y la contraseña.");
-            alerta.showAndWait();
+        if (usuario.isEmpty() || password == null || password.isEmpty()) {
+            AlertHelper.mostrarAdvertencia(
+                    "Campos incompletos",
+                    "Por favor, ingrese el usuario y la contraseña."
+            );
             return;
         }
 
-        // Si la validación pasa, abrimos la ventana principal
+        if (!usuarioService.autenticar(usuario, password)) {
+            AlertHelper.mostrarError(
+                    "Acceso denegado",
+                    "El usuario o la contraseña son incorrectos."
+            );
+            txtPassword.clear();
+            txtPassword.requestFocus();
+            return;
+        }
+
         abrirVentanaPrincipal();
+    }
+
+    private void abrirRegistroUsuario() {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/example/evaluacion160926/RegistroUsuario.fxml")
+            );
+            Parent root = loader.load();
+
+            Stage registroStage = new Stage();
+            registroStage.setTitle("Crear cuenta");
+            registroStage.setScene(new Scene(root, 420, 410));
+            registroStage.initOwner(btnIniciarSesion.getScene().getWindow());
+            registroStage.initModality(Modality.WINDOW_MODAL);
+            registroStage.setResizable(false);
+            registroStage.showAndWait();
+
+            RegistroUsuarioController controller = loader.getController();
+            if (controller.getUsuarioRegistrado() != null) {
+                txtUsuario.setText(controller.getUsuarioRegistrado());
+                txtPassword.clear();
+                txtPassword.requestFocus();
+            }
+        } catch (IOException e) {
+            AlertHelper.mostrarError("Error", "No se pudo abrir la ventana para crear la cuenta.");
+        }
     }
 
     private void abrirVentanaPrincipal() {
