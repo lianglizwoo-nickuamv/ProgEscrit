@@ -1,17 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="15.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ni.edu.uam.registro.controllers.DetalleClienteController">
-    <padding>
-        <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
-    </padding>
-    <ImageView fx:id="imgFoto" fitHeight="150.0" fitWidth="150.0" preserveRatio="true" />
-    <Label fx:id="lblNombreCompleto" text="Nombre Apellido">
-        <font><Font name="System Bold" size="20.0" /></font>
-    </Label>
-    <Label fx:id="lblDetalles" text="Detalles del cliente..." wrapText="true" />
-</VBox>
+<ScrollPane fitToWidth="true"
+            prefWidth="450.0"
+            prefHeight="520.0"
+            hbarPolicy="NEVER"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controllers.DetalleClienteController">
+
+    <content>
+        <VBox alignment="TOP_CENTER" spacing="20.0">
+
+            <padding>
+                <Insets top="30.0"
+                        right="30.0"
+                        bottom="30.0"
+                        left="30.0"/>
+            </padding>
+
+            <Label text="Detalle del Cliente">
+                <font>
+                    <Font name="System Bold" size="22.0"/>
+                </font>
+            </Label>
+
+            <ImageView fx:id="imgFoto"
+                       fitWidth="150.0"
+                       fitHeight="150.0"
+                       preserveRatio="true"
+                       smooth="true"/>
+
+            <Label fx:id="lblNombreCompleto"
+                   text="Nombre del cliente"
+                   maxWidth="380.0"
+                   alignment="CENTER"
+                   textAlignment="CENTER"
+                   wrapText="true">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Label>
+
+            <Separator/>
+
+            <Label fx:id="lblDetalles"
+                   text="Información del cliente"
+                   maxWidth="380.0"
+                   wrapText="true"/>
+
+            <Label text="Para volver a la consulta, cerrá esta ventana."
+                   maxWidth="380.0"
+                   wrapText="true"
+                   textAlignment="CENTER"/>
+
+        </VBox>
+    </content>
+
+</ScrollPane>
