@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -70,7 +69,10 @@
     </top>
 
     <center>
-        <VBox alignment="CENTER" spacing="24.0">
+        <VBox fx:id="areaCentral"
+              alignment="CENTER"
+              spacing="24.0"
+              pickOnBounds="true">
 
             <padding>
                 <Insets top="30.0"
@@ -101,7 +103,7 @@
                     </font>
                 </Label>
 
-                <Label text="Ingresá los datos personales, el tipo de solicitud, los servicios de interés y una fotografía."
+                <Label text="Ingresá los datos personales, la solicitud, los servicios y una fotografía."
                        wrapText="true"/>
 
                 <Label text="Consultar clientes">
@@ -110,16 +112,22 @@
                     </font>
                 </Label>
 
-                <Label text="Revisá los clientes registrados en la tabla y hacé doble clic sobre uno para ver sus detalles."
+                <Label text="Revisá los registros y hacé doble clic sobre un cliente para ver sus detalles."
                        wrapText="true"/>
 
             </VBox>
+
+            <Separator maxWidth="480.0"/>
+
+            <Label text="Hacé clic derecho en esta área para abrir las opciones."
+                   wrapText="true"
+                   textAlignment="CENTER"/>
 
         </VBox>
     </center>
 
     <bottom>
-        <VBox alignment="CENTER" spacing="6.0">
+        <VBox alignment="CENTER">
 
             <padding>
                 <Insets top="12.0"
@@ -128,26 +136,7 @@
                         left="20.0"/>
             </padding>
 
-            <Separator/>
-
-            <Label text="Sistema de Registro — Versión 1.0"
-                   alignment="CENTER"
-                   maxWidth="Infinity">
-
-                <contextMenu>
-                    <ContextMenu>
-                        <items>
-                            <MenuItem text="Acerca de este sistema"
-                                      onAction="#mostrarAcercaDe"/>
-                        </items>
-                    </ContextMenu>
-                </contextMenu>
-
-            </Label>
-
-            <Label text="Clic derecho sobre la versión para ver información del sistema."
-                   wrapText="true"
-                   textAlignment="CENTER"/>
+            <Label text="Sistema de Registro — Versión 1.0"/>
 
         </VBox>
     </bottom>
