@@ -32,5 +32,7 @@
 
     <Button fx:id="btnIniciarSesion" maxWidth="1.7976931348623157E308" onAction="#iniciarSesion" text="Iniciar sesión" />
 
+    <Button maxWidth="1.7976931348623157E308" onAction="#crearCuenta" text="Crear cuenta nueva" />
+
     <Button maxWidth="1.7976931348623157E308" onAction="#salir" text="Salir" />
 </VBox>
