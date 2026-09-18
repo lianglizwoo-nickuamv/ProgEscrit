@@ -22,6 +22,14 @@ public class AlertHelper {
         alerta.showAndWait();
     }
 
+    public static void mostrarError(String titulo, String mensaje) {
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
+    }
+
     public static boolean mostrarConfirmacion(String titulo, String mensaje) {
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
         alerta.setTitle(titulo);
